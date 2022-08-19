@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="icu.youcompleteme.ispv2.mapper.IspUserMapper">
+
+    <resultMap type="icu.youcompleteme.ispv2.entity.IspUser" id="IspUserMap">
+        <result property="userId" column="id" jdbcType="VARCHAR"/>
+        <result property="pwd" column="pwd" jdbcType="VARCHAR"/>
+        <result property="ispPwd" column="isp_pwd" jdbcType="VARCHAR"/>
+        <result property="area" column="area" jdbcType="VARCHAR"/>
+        <result property="qq" column="qq" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        user_id,
+        pwd,
+        isp_pwd,
+        area,
+        qq
+    </sql>
+
+    <!-- 批量插入 -->
+    <insert id="insertBatch" keyProperty="userId" useGeneratedKeys="true">
+        insert into isp_user(pwd, isp_pwd, area, qq)
+        values
+        <foreach collection="list" item="item" separator=",">
+        (#{item.pwd}, #{item.ispPwd}, #{item.area}, #{item.qq})
+        </foreach>
+    </insert>
+    <!-- 批量插入或按主键更新 -->
+    <insert id="insertOrUpdateBatch" keyProperty="userId" useGeneratedKeys="true">
+        insert into isp_user(pwd, isp_pwd, area, qq)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.pwd}, #{item.ispPwd}, #{item.area}, #{item.qq})
+        </foreach>
+        on duplicate key update
+         pwd = values(pwd) , isp_pwd = values(isp_pwd) , area = values(area) , qq = values(qq)     </insert>
+
+</mapper>
+
