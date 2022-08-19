@@ -59,7 +59,7 @@ public class TimerController {
     }
 
 
-    @Scheduled(cron = "0 0 7/3 * * ?")
+    @Scheduled(cron = "0 0 4/3 * * ?")
     public BaseResponse cronTask() throws Exception {
         LambdaQueryWrapper<IspUser> wp = new LambdaQueryWrapper<>();
         wp.eq(IspUser::getIsSuccess, 0);
