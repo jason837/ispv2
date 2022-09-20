@@ -130,16 +130,16 @@ public class ScriptForISPUtils {
     public void scriptForISP(IspUser ispUser) throws Exception {
         WebDriver webDriver = null;
         // windows, D:\JavaProjectLearning\LSP\src\main\resources\
-//        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
-//        webDriver = new ChromeDriver();
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.setHeadless(Boolean.TRUE);
-        chromeOptions.addArguments("--no-sandbox", "--disable-dev-shm-usage", "window-size=1920x3000", "--disable-gpu", "--hide-scrollbars", "blink-settings=imagesEnabled=false", "--headless");
-        //启动一个 chrome 实例
-        // linux
-        System.setProperty("webdriver.chrome.driver", "/usr/lib64/chromium-browser/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+        webDriver = new ChromeDriver();
+//        ChromeOptions chromeOptions = new ChromeOptions();
+//        chromeOptions.setHeadless(Boolean.TRUE);
+//        chromeOptions.addArguments("--no-sandbox", "--disable-dev-shm-usage", "window-size=1920x3000", "--disable-gpu", "--hide-scrollbars", "blink-settings=imagesEnabled=false", "--headless");
+//        //启动一个 chrome 实例
+//        // linux
+//        System.setProperty("webdriver.chrome.driver", "/usr/lib64/chromium-browser/chromedriver");
 
-        webDriver = new ChromeDriver(chromeOptions);
+//        webDriver = new ChromeDriver(chromeOptions);
 
         webDriver.get("http://xsswzx-cdu-edu-cn-s.vpn.cdu.edu.cn:8118/ispstu/com_user/weblogin.asp");
         // get the vpn permission
@@ -176,7 +176,8 @@ public class ScriptForISPUtils {
         webDriver.get("http://xsswzx-cdu-edu-cn-s.vpn.cdu.edu.cn:8118/ispstu/com_user/projecthealth.asp?id=d3c87b7b13b404fe5c12cad9a638208286065a4ebc69");
         Thread.sleep(1000);
 //            // //*[@id="t"]/tbody/tr[6]/td/a[1]: then 点击常规登记（因为每隔5天要重置信息，所以直接常规登记。。。暂时）
-        webDriver.findElement(By.xpath("/html/body/div/div[1]/div/div/table/tbody/tr[2]/td/a[1]")).click();
+        // /html/body/div/div[1]/div/div/table/tbody/tr[3]/td/a[1]
+        webDriver.findElement(By.xpath("/html/body/div/div[1]/div/div/table/tbody/tr[3]/td/a[1]")).click();
         Thread.sleep(1000);
         webDriver.manage().window().maximize();
         // select tag: 这里不用select选项和option进行，比较麻烦。直接input；
@@ -191,8 +192,8 @@ public class ScriptForISPUtils {
         Thread.sleep(500);
         webDriver.findElement(By.xpath("//*[@id=\"area\"]")).sendKeys(AREA);
         Thread.sleep(500);
-        // submit：/html/body/form/div/div/div/div[7]/div/div/div/div[2]/button[1]
-        webDriver.findElement(By.xpath("/html/body/form/div/div/div/div[7]/div/div/div/div[2]/button[1]")).click();
+        // submit：/html/body/form/div/div/div/div[7]/div/div/div/div/button[1]
+        webDriver.findElement(By.xpath("/html/body/form/div/div/div/div[7]/div/div/div/div/button[1]")).click();
         webDriver.manage().window().maximize();
         // 正常提交
         Thread.sleep(10000);
